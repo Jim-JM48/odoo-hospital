@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_patient_reg,Patients Reg,model_res_partner,hospital.reg_group,1,1,1,0
+access_diagnosis_reg,Diagnosis Reg,model_sale_order,hospital.reg_group,1,0,0,0
+
+
+access_patient_gen,Patients Gen,model_res_partner,hospital.gen_group,1,1,0,0
+access_diagnosis_gen,Diagnosis Gen,model_sale_order,hospital.gen_group,1,1,1,1
+
+access_department_mng,Departments Mng,model_hr_department,hospital.mng_group,1,1,1,1
+access_doctor_mng,Doctors Mng,model_hr_employee,hospital.mng_group,0,1,1,0
+access_medicine_mng,Medicines Mng,model_product_template,hospital.mng_group,1,1,1,1

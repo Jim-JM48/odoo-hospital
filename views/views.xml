@@ -1,0 +1,113 @@
+<odoo>
+	<data>
+
+		<record id="department_action" model="ir.actions.act_window">
+			<field name="name">Departments</field>
+			<field name="res_model">hr.department</field>
+			<field name="view_mode">kanban,tree,pivot,form,search</field>
+		</record>
+
+		<record id="doctor_action" model="ir.actions.act_window">
+			<field name="name">Doctors</field>
+			<field name="res_model">hr.employee</field>
+			<field name="view_mode">kanban,tree,activity,form</field>
+		</record>
+
+		<record id="patient_action" model="ir.actions.act_window">
+			<field name="name">Patients</field>
+			<field name="res_model">res.partner</field>
+			<field name="view_mode">tree,pivot,form,search</field>
+		</record>
+
+		<record id="diagnosis_action" model="ir.actions.act_window">
+			<field name="name">Diagnosis</field>
+			<field name="res_model">sale.order</field>
+			<field name="view_mode">tree,pivot,form,search</field>
+		</record>
+
+		<record id="medicine_action" model="ir.actions.act_window">
+			<field name="name">Medicines</field>
+			<field name="res_model">product.template</field>
+			<field name="view_mode">tree,pivot,form,search</field>
+		</record>
+
+		<record id="Department_from_inherit" model="ir.ui.view">
+			<field name="name">hr.department.form.inherit</field>
+			<field name="model">hr.department</field>
+			<field name="arch" type="xml">
+				<sheet>
+					<notebook>
+						<page string="Doctors List">
+							<group>
+								<field name="General_Doctors"/>
+								<field name="Private_Doctors"/>
+							</group>
+						</page>
+					</notebook>
+				</sheet>
+			</field>
+		</record>
+
+		<record id="Doctor_from_inherit" model="ir.ui.view">
+			<field name="name">hr.employee.form.inherit</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form"/>
+			<field name="arch" type="xml">
+				<field name="coach_id" position="after">
+					<field name="category"/>
+				</field>
+			</field>
+		</record>
+
+		<record id="Diagnosis_from_inherit" model="ir.ui.view">
+			<field name="name">sale.order.form.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<field name="partner_id" position="after">
+					<field name="age"/>
+					<field name="symptoms"/>
+					<field name="examinations"/>
+				</field>
+				<xpath expr="/form/header" position="inside">
+					<button name="examination" type="object" string="Examination" class="btn-primary"/>
+					<button name="surgery" type="object" string="Surgery" class="btn-primary"/>
+					<button name="intensive" type="object" string="Intensive Care" class="btn-primary"/>
+					<button name="done" type="object" string="Done" class="btn-primary"/>
+					<field name="case" widget="statusbar"/>
+				</xpath>
+			</field>
+		</record>
+
+
+
+		<menuitem
+			id="root_menu"
+			name="Hospital"/>
+		<menuitem
+			id="department_menu"
+			name="Departments"
+			action="department_action"
+			parent="root_menu"/>
+		<menuitem
+			id="doctor_menu"
+			name="Doctors"
+			action="doctor_action"
+			parent="root_menu"/>
+		<menuitem
+			id="patient_menu"
+			name="Patients"
+			action="patient_action"
+			parent="root_menu"/>
+		<menuitem
+			id="diagnosis_menu"
+			name="Diagnosis"
+			action="diagnosis_action"
+			parent="root_menu"/>
+		<menuitem
+			id="medicine_menu"
+			name="Medicines"
+			action="medicine_action"
+			parent="root_menu"/>
+	</data>
+</odoo>

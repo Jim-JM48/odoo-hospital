@@ -1,0 +1,53 @@
+<odoo>
+	<data>
+		<report
+			id="diagnosis_report"
+			name="hospital.diagnosis_report_temp"
+			model="sale.order"
+			string="Patient Diagnosis Report"
+			report_type="qweb-pdf"/>
+
+
+		<template id="diagnosis_report_temp">
+			<t t-call="web.html_container">
+				<t t-call="web.external_layout">
+					<!-- <t t-foreach="" t-as="student">
+						<div class="page">
+						</div>
+					</t> -->
+					<div class="page">
+						<t t-foreach="docs" t-as="patient">
+							<table border="1">
+								<thead>
+									<tr>
+										<td><h3>Data</h3></td>
+										<td><h3>Patient Info</h3></td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><h3>Name</h3></td>
+										<td><h3 t-field="patient.partner_id" /></td>
+									</tr>
+									<tr>
+										<td><h3>Age</h3></td>
+										<td><h3 t-field="patient.age"/></td>
+									</tr>
+									<tr>
+										<td><h3>Symptoms</h3></td>
+										<td><h3 t-field="patient.symptoms"/></td>
+									</tr>
+									<tr>
+										<td><h3>Examinations</h3></td>
+										<td><h3 t-field="patient.examinations"/></td>
+									</tr>
+								</tbody>
+							</table>
+						</t>
+					</div>
+				</t>
+			</t>
+		</template>
+	</data>
+
+</odoo>
